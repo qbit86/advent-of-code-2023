@@ -3,12 +3,16 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>All</AnalysisMode>
     <ArtifactsPath>$(MSBuildThisFileDirectory).artifacts/</ArtifactsPath>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <Deterministic>true</Deterministic>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <IsPackable>false</IsPackable>
     <LangVersion>latest</LangVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <NoWarn>CA1014</NoWarn>
     <Nullable>enable</Nullable>
-    <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
+    <RootNamespace>AdventOfCode2023</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
     <UseArtifactsOutput>true</UseArtifactsOutput>
   </PropertyGroup>
 </Project>

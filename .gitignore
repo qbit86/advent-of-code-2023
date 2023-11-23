@@ -1,9 +1,5 @@
+.artifacts/
 .vs/
 .vscode/
 *.suo
 *.user
-bin/
-Debug/
-obj/
-out/
-Release/
