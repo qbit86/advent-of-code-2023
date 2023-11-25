@@ -1,3 +1,5 @@
+using System;
+
 namespace AdventOfCode2023.App;
 
 public class WeatherForecast

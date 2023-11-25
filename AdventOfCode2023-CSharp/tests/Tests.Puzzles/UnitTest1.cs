@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace Tests.Puzzles;
 
 public class UnitTest1
