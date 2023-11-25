@@ -1,12 +1,11 @@
 using Xunit;
 
-namespace Tests.Puzzles;
+namespace AdventOfCode2023;
 
-public class UnitTest1
+public sealed class UnitTest1
 {
     [Fact]
     public void Test1()
     {
-
     }
 }

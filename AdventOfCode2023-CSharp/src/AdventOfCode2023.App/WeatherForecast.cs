@@ -1,6 +1,6 @@
 using System;
 
-namespace AdventOfCode2023.App;
+namespace AdventOfCode2023;
 
 public class WeatherForecast
 {

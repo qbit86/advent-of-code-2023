@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AdventOfCode2023.App;
+namespace AdventOfCode2023;
 
 public class Program
 {
