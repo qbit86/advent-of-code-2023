@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,25 +31,19 @@ internal static class Program
 
         app.UseAuthorization();
 
-        string[] summaries =
+        app.MapGet("puzzle/1", async () =>
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            var stopwatch = Stopwatch.StartNew();
+            long answer = await PuzzlePartOne.SolveAsync("input.txt").ConfigureAwait(false);
+            return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
+        });
 
-        app.MapGet("/weatherforecast", () =>
-            {
-                WeatherForecast[] forecast = Enumerable.Range(1, 5).Select(index =>
-                        new WeatherForecast
-                        {
-                            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                            TemperatureC = Random.Shared.Next(-20, 55),
-                            Summary = summaries[Random.Shared.Next(summaries.Length)]
-                        })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast")
-            .WithOpenApi();
+        app.MapGet("puzzle/2", async () =>
+        {
+            var stopwatch = Stopwatch.StartNew();
+            long answer = await PuzzlePartTwo.SolveAsync("input.txt").ConfigureAwait(false);
+            return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
+        });
 
         app.Run();
     }
