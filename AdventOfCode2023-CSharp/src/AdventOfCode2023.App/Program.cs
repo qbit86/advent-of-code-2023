@@ -1,15 +1,14 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace AdventOfCode2023;
 
-public class Program
+internal static class Program
 {
-    public static void Main(string[] args)
+    internal static void Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -33,12 +32,12 @@ public class Program
 
         app.UseAuthorization();
 
-        string[] summaries = new[]
+        string[] summaries =
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+        app.MapGet("/weatherforecast", () =>
             {
                 WeatherForecast[] forecast = Enumerable.Range(1, 5).Select(index =>
                         new WeatherForecast
