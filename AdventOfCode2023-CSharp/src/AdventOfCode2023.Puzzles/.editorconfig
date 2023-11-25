@@ -1,0 +1,2 @@
+[PuzzlePart*.cs]
+resharper_unused_parameter_local_highlighting = none
