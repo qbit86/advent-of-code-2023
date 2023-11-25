@@ -18,4 +18,9 @@
     <ProjectReference Include="..\..\src\AdventOfCode2023.Puzzles\AdventOfCode2023.Puzzles.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="sample.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(AdventOfCode2023SolutionDir)src\AdventOfCode2023.App\input.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

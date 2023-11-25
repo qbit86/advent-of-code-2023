@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <AdventOfCode2023SolutionDir>$(MSBuildThisFileDirectory)</AdventOfCode2023SolutionDir>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>All</AnalysisMode>
     <ArtifactsPath>$(MSBuildThisFileDirectory).artifacts/</ArtifactsPath>
