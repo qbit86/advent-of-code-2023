@@ -34,14 +34,14 @@ internal static class Program
         app.MapGet("puzzle/1", async () =>
         {
             var stopwatch = Stopwatch.StartNew();
-            long answer = await PuzzlePartOne.SolveAsync("input.txt").ConfigureAwait(false);
+            long answer = await PartOnePuzzle.SolveAsync("input.txt").ConfigureAwait(false);
             return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
         });
 
         app.MapGet("puzzle/2", async () =>
         {
             var stopwatch = Stopwatch.StartNew();
-            long answer = await PuzzlePartTwo.SolveAsync("input.txt").ConfigureAwait(false);
+            long answer = await PartTwoPuzzle.SolveAsync("input.txt").ConfigureAwait(false);
             return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
         });
 

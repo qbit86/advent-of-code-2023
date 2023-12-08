@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2023;
 
-public static class PuzzlePartTwo
+public static class PartTwoPuzzle
 {
     public static async Task<long> SolveAsync(string path)
     {
