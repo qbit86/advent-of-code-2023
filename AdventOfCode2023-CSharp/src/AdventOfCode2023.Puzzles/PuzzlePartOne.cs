@@ -23,23 +23,23 @@ public static class PuzzlePartOne
 
     private static long Solve(IReadOnlyList<string> lines)
     {
-        List<int> times = Parse(lines[0]);
-        List<int> distances = Parse(lines[1]);
-        IEnumerable<(int Time, int Distance)> timeDistancePairs = times.Zip(distances);
-        IEnumerable<int> wayCounts = timeDistancePairs.Select(it => CountWays(it.Time, it.Distance));
+        List<nint> times = Parse(lines[0]);
+        List<nint> distances = Parse(lines[1]);
+        IEnumerable<(nint Time, nint Distance)> timeDistancePairs = times.Zip(distances);
+        IEnumerable<nint> wayCounts = timeDistancePairs.Select(it => CountWays(it.Time, it.Distance));
         return wayCounts.Aggregate(1L, (left, right) => left * right);
     }
 
-    private static List<int> Parse(string line)
+    private static List<nint> Parse(string line)
     {
-        List<int> result = new();
+        List<nint> result = new();
         const int offset = 11;
         StringSegment valuesSegment = new(line, offset, line.Length - offset);
         StringTokenizer tokenizer = new(valuesSegment, s_separators);
         foreach (StringSegment segment in tokenizer)
         {
             if (segment is { Length: > 0 })
-                result.Add(int.Parse(segment, CultureInfo.InvariantCulture));
+                result.Add(nint.Parse(segment, CultureInfo.InvariantCulture));
         }
 
         return result;
