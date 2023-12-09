@@ -21,13 +21,13 @@ public static class PartOnePuzzle
 
     private static long Extrapolate(string line)
     {
-        var values = line.Split(' ').Select(it => nint.Parse(it, CultureInfo.InvariantCulture)).ToList();
+        nint[] values = line.Split(' ').Select(it => nint.Parse(it, CultureInfo.InvariantCulture)).ToArray();
         return Extrapolate(values);
     }
 
-    private static nint Extrapolate(IList<nint> values)
+    private static nint Extrapolate(IReadOnlyList<nint> values)
     {
-        List<IList<nint>> diffLists = [values];
+        List<IReadOnlyList<nint>> diffLists = [values];
         for (int i = 0;; ++i)
         {
             IEnumerable<(nint First, nint Second)> zip = diffLists[i].Zip(diffLists[i].Skip(1));
@@ -37,13 +37,13 @@ public static class PartOnePuzzle
             diffLists.Add(diffList);
         }
 
+        nint extrapolatedValue = 0;
         for (int i = diffLists.Count - 1; i >= 0; --i)
         {
-            IList<nint> diffList = diffLists[i];
-            nint diff = i == diffLists.Count - 1 ? 0 : diffLists[i + 1][^1];
-            diffList.Add(diffList[^1] + diff);
+            IReadOnlyList<nint> diffList = diffLists[i];
+            extrapolatedValue = diffList[^1] + extrapolatedValue;
         }
 
-        return values[^1];
+        return extrapolatedValue;
     }
 }
