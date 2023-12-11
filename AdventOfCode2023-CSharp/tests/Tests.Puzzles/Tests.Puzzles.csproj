@@ -20,6 +20,10 @@
 
   <ItemGroup>
     <None Update="sample.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sample-2.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sample-3.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sample-4.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sample-5.txt" CopyToOutputDirectory="PreserveNewest" />
     <None Include="$(AdventOfCode2023SolutionDir)src\AdventOfCode2023.App\input.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
