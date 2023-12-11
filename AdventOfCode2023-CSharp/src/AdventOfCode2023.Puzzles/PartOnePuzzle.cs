@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,5 +16,10 @@ public static class PartOnePuzzle
         return Solve(lines);
     }
 
-    private static long Solve(IReadOnlyList<string> lines) => throw new NotImplementedException();
+    private static long Solve(IReadOnlyList<string> lines)
+    {
+        List<Point> galaxies = Helpers.CreateGalaxies(lines);
+        var transformedGalaxies = Helpers.Expand(lines, 2, galaxies).ToList();
+        return Helpers.ComputeSumOfDistances(transformedGalaxies);
+    }
 }
