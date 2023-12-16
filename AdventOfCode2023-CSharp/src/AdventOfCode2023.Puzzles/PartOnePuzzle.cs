@@ -15,5 +15,12 @@ public static class PartOnePuzzle
         return Solve(lines);
     }
 
-    private static long Solve(IReadOnlyList<string> lines) => throw new NotImplementedException();
+    private static long Solve<TLines>(TLines lines)
+        where TLines : IReadOnlyList<string>
+    {
+        using var platform = PooledPlatform.Create(lines);
+        platform.Transpose();
+        platform.RollAllRoundedRocks();
+        return platform.ComputeCurrentLoad();
+    }
 }
