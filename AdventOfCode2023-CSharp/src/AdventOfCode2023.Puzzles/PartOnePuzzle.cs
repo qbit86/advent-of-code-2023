@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +19,32 @@ public static class PartOnePuzzle
     }
 
     private static long Solve<TLines>(TLines lines)
-        where TLines : IReadOnlyList<string> =>
-        throw new NotImplementedException();
+        where TLines : IReadOnlyList<string>
+    {
+        IEnumerable<Instruction> instructions = lines.Select(Parse);
+        List<Segment> segments = new();
+        Point current = new();
+        foreach (Instruction instruction in instructions)
+        {
+            Segment segment = instruction.CreateSegment(current);
+            segments.Add(segment);
+            current = segment.EndInclusive;
+        }
+
+        return Helpers.Solve(segments);
+    }
+
+    private static Instruction Parse(string line)
+    {
+        Debug.Assert(!string.IsNullOrWhiteSpace(line));
+        ReadOnlySpan<char> lineSpan = line.AsSpan();
+        Span<Range> ranges = stackalloc Range[3];
+        int count = lineSpan.Split(ranges, ' ',
+            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (count < 2)
+            throw new InvalidOperationException($"{nameof(count)}: {count}");
+        char direction = lineSpan[ranges[0]][0];
+        int cubeCount = int.Parse(lineSpan[ranges[1]], CultureInfo.InvariantCulture);
+        return new(direction, cubeCount);
+    }
 }
