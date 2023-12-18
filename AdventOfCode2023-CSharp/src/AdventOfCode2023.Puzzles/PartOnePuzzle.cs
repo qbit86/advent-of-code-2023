@@ -15,5 +15,7 @@ public static class PartOnePuzzle
         return Solve(lines);
     }
 
-    private static long Solve(IReadOnlyList<string> lines) => throw new NotImplementedException();
+    private static long Solve<TLines>(TLines lines)
+        where TLines : IReadOnlyList<string> =>
+        throw new NotImplementedException();
 }
