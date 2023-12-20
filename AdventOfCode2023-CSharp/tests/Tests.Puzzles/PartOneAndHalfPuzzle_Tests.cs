@@ -3,7 +3,7 @@ using Xunit;
 
 namespace AdventOfCode2023;
 
-public sealed class PartOnePuzzle_Tests
+public sealed class PartOneAndHalfPuzzle_Tests
 {
     [Theory]
     [InlineData("sample.txt", 19114L)]
@@ -15,7 +15,7 @@ public sealed class PartOnePuzzle_Tests
     [InlineData("input.txt", 397134L)]
     internal async Task SolveAsync(string inputPath, long expected)
     {
-        long actual = await PartOnePuzzle.SolveAsync(inputPath).ConfigureAwait(true);
+        long actual = await PartOneAndHalfPuzzle.SolveAsync(inputPath).ConfigureAwait(true);
         Assert.Equal(expected, actual);
     }
 }
