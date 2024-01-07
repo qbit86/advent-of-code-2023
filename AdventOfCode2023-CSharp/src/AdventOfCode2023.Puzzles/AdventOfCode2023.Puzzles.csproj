@@ -3,5 +3,6 @@
     <PackageReference Include="Arborescence.Abstractions" />
     <PackageReference Include="Arborescence.Models" />
     <PackageReference Include="Arborescence.Primitives" />
+    <PackageReference Include="Arborescence.Search" />
   </ItemGroup>
 </Project>
