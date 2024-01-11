@@ -27,8 +27,7 @@ public static class PartOnePuzzle
             Helpers.PopulateNeighborsByVertex(lines, neighborsByVertex, out Point startingPosition);
         if (!startingPositionFound)
             throw new ArgumentException($"{nameof(startingPosition)}: false", nameof(lines));
-        ListAdjacencyGraph<Point, Dictionary<Point, List<Point>>> graph =
-            ListAdjacencyGraphFactory<Point>.Create(neighborsByVertex);
+        var graph = ListAdjacencyGraph<Point>.Create(neighborsByVertex);
         Dictionary<Point, int> distanceByPosition = new() { { startingPosition, 0 } };
         IEnumerable<Endpoints<Point>> edges =
             EnumerableBfs<Point, List<Point>.Enumerator>.EnumerateEdges(graph, startingPosition);
