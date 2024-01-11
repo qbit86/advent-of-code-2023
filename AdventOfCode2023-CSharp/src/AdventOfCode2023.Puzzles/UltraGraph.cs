@@ -29,7 +29,7 @@ internal sealed class UltraGraph :
     }
 
     public IncidenceEnumerator<Node, IEnumerator<Node>> EnumerateOutEdges(Node vertex) =>
-        IncidenceEnumerator.Create(vertex, EnumerateOutNeighbors(vertex));
+        IncidenceEnumerator<Node, IEnumerator<Node>>.Create(this, vertex);
 
     public IEnumerator<Node> EnumerateOutNeighbors(Node vertex)
     {
