@@ -24,7 +24,7 @@ public static class PuzzlePartTwo
     {
         long[] arrayFromPool = ArrayPool<long>.Shared.Rent(lines.Count);
         arrayFromPool.AsSpan(0, lines.Count).Fill(int.MinValue);
-        CardCountById cardCountById = Int32DictionaryFactory<long>.CreateWithAbsence(arrayFromPool, int.MinValue);
+        var cardCountById = Int32Dictionary<long>.CreateWithAbsence(arrayFromPool, int.MinValue);
 
         IEnumerable<Card> cards = lines.Select(Card.Parse);
         IEnumerable<IEnumerable<int>> intersections =
