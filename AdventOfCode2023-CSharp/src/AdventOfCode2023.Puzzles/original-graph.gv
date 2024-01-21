@@ -1,0 +1,60 @@
+digraph Graph {
+    df -> rx
+    gp -> df
+    ln -> df
+    pp -> ln, ml, xt, bq, nb
+    rg -> cs, zb, cp, vz, gp
+    sj -> xp, qq, cn, fd, sn
+    xl -> df
+    xp -> df
+    zp -> vl, lk, rd, kb, xl
+    bc -> nb, pp
+    bh -> pp, pr
+    bj -> lj, rg
+    bq -> tb
+    ch -> sj
+    cn -> sn, sj
+    cp -> kk
+    cs -> zb, rg
+    fd -> nt
+    fl -> nf, rg
+    fq -> pp, bh
+    fr -> zp, mr
+    hc -> kb, zp
+    hd -> pp, bq
+    jd -> zp, mf
+    jg -> fl, rg
+    kb -> pc
+    kk -> rg, bj
+    kl -> mb, sj
+    kq -> sj, qq
+    lj -> rg
+    lk -> hc
+    lv -> zp, rd
+    mb -> sj, nh
+    mf -> zp
+    ml -> pp, xt
+    mr -> zp, jd
+    nb -> qj
+    nd -> rg, jg
+    nf -> sm, rg
+    nh -> sj, rq
+    nt -> kq, sj
+    pc -> rz, zp
+    pk -> fq, pp
+    pr -> pp
+    qj -> pp, hd
+    qq -> sq
+    rd -> lk
+    rq -> ch, sj
+    rz -> zp, fr
+    sm -> rg, cp
+    sn -> fd
+    sq -> kl, sj
+    tb -> pk, pp
+    vl -> lv, zp
+    vz -> nd
+    xt -> bc
+    zb -> vz
+    broadcaster -> vl, cs, cn, ml
+}

@@ -1,2 +1,9 @@
 [Part*Puzzle.cs]
 resharper_unused_parameter_local_highlighting = none # UnusedParameter.Local
+
+[Module.cs]
+dotnet_diagnostic.CA1716.severity = none # Identifiers should not match keywords
+
+[PartTwoPuzzle.cs]
+dotnet_diagnostic.CS0162.severity = none # Unreachable code detected
+resharper_heuristic_unreachable_code_highlighting = none # HeuristicUnreachableCode

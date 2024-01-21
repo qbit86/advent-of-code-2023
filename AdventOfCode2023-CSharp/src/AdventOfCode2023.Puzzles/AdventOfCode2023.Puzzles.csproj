@@ -1,2 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <None Update="original-graph.gv" CopyToOutputDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Arborescence.Abstractions" />
+  </ItemGroup>
+
 </Project>
