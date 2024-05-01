@@ -5,9 +5,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace AdventOfCode2023;
 
-internal static class Program
+file static class Program
 {
-    internal static void Main(string[] args)
+    private static void Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
