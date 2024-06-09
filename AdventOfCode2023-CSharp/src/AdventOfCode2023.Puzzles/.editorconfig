@@ -1,2 +1,8 @@
 [Part*Puzzle.cs]
 resharper_unused_parameter_local_highlighting = none # UnusedParameter.Local
+
+[Graph.cs]
+resharper_not_disposed_resource_is_returned_highlighting = none # NotDisposedResourceIsReturned
+
+[Helpers.cs]
+dotnet_diagnostic.CA1024.severity = none # Use properties where appropriate

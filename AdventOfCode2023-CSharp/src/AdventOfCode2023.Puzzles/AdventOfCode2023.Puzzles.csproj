@@ -1,2 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Arborescence.Abstractions" />
+    <PackageReference Include="Arborescence.Traversal" />
+    <PackageReference Include="MathNet.Numerics" />
+  </ItemGroup>
 </Project>

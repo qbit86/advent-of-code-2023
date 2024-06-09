@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(AdventOfCode2023SolutionDir)tests\Tests.Puzzles\sample.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(AdventOfCode2023SolutionDir)src\AdventOfCode2023.App\input.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AdventOfCode2023.Puzzles\AdventOfCode2023.Puzzles.csproj" />
+  </ItemGroup>
+
+</Project>
