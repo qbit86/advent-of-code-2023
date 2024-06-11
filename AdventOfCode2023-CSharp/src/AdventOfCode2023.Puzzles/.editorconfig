@@ -1,2 +1,6 @@
 [Part*Puzzle.cs]
+dotnet_code_quality.CA1708.api_surface = public # Identifiers should differ by more than case
+dotnet_diagnostic.CS0162.severity = none # Unreachable code detected
+resharper_heuristic_unreachable_code_highlighting = none # HeuristicUnreachableCode
+resharper_redundant_assignment_highlighting = none # RedundantAssignment
 resharper_unused_parameter_local_highlighting = none # UnusedParameter.Local
