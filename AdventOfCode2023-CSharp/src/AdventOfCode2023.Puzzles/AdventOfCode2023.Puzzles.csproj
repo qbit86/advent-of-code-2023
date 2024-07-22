@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="Arborescence.Abstractions" />
     <PackageReference Include="MathNet.Numerics" />
   </ItemGroup>
 </Project>
