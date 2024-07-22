@@ -1,2 +1,7 @@
 [Part*Puzzle.cs]
+dotnet_diagnostic.CS0162.severity = none # Unreachable code detected
+resharper_heuristic_unreachable_code_highlighting = none # HeuristicUnreachableCode
 resharper_unused_parameter_local_highlighting = none # UnusedParameter.Local
+
+[IncidenceAdjacency.cs]
+dotnet_diagnostic.CA5394.severity = none # Do not use insecure randomness

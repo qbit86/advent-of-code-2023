@@ -38,13 +38,6 @@ file static class Program
             return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
         });
 
-        app.MapGet("puzzle/2", async () =>
-        {
-            var stopwatch = Stopwatch.StartNew();
-            long answer = await PartTwoPuzzle.SolveAsync("input.txt").ConfigureAwait(false);
-            return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
-        });
-
         app.Run();
     }
 }
