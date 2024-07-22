@@ -1,0 +1,8 @@
+[*.cs]
+resharper_check_namespace_highlighting = none # CheckNamespace
+
+[V{2,3}_1.cs]
+resharper_convert_to_auto_property_highlighting = none # ConvertToAutoProperty
+resharper_convert_to_primary_constructor_highlighting = none # ConvertToPrimaryConstructor
+resharper_inconsistent_naming_highlighting = none # InconsistentNaming
+dotnet_diagnostic.CA2225.severity = none # Operator overloads have named alternates

@@ -34,7 +34,8 @@ file static class Program
         app.MapGet("puzzle/1", async () =>
         {
             var stopwatch = Stopwatch.StartNew();
-            long answer = await PartOnePuzzle.SolveAsync("input.txt").ConfigureAwait(false);
+            long answer = await PartOnePuzzle.SolveAsync("input.txt", 200_000_000_000_000L, 400_000_000_000_000L)
+                .ConfigureAwait(false);
             return new PuzzleSolution { Answer = answer, Duration = stopwatch.Elapsed };
         });
 
