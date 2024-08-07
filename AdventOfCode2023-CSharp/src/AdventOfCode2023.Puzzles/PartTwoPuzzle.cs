@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using P2 = Point2<int>;
 
 public static class PartTwoPuzzle
 {
@@ -25,7 +27,7 @@ public static class PartTwoPuzzle
         Debug.Assert(lines.Count > 0);
         int columnCount = lines[0].Length;
         UltraGraph graph = new(rowCount, columnCount);
-        Point destinationPosition = new(columnCount - 1, rowCount - 1);
+        P2 destinationPosition = new(columnCount - 1, rowCount - 1);
         return Helpers.Solve(lines, rowCount, columnCount, graph, IsDestination);
 
         bool IsDestination(Node node)

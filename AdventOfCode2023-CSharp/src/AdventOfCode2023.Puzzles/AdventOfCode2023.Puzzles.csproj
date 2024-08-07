@@ -4,5 +4,6 @@
     <PackageReference Include="Arborescence.Models" />
     <PackageReference Include="Arborescence.Primitives" />
     <PackageReference Include="Arborescence.Search" />
+    <PackageReference Include="EuclideanSpace" />
   </ItemGroup>
 </Project>

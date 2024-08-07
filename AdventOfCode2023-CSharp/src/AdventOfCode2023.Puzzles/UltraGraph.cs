@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
 using Arborescence;
 using Arborescence.Models;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using P2 = Point2<int>;
+using V2 = Vector2<int>;
 
 internal sealed class UltraGraph :
     IOutNeighborsAdjacency<Node, IEnumerator<Node>>,
@@ -34,15 +37,15 @@ internal sealed class UltraGraph :
     public IEnumerator<Node> EnumerateOutNeighbors(Node vertex)
     {
         (var position, var direction, int moveCount) = vertex;
-        if (direction == Size.Empty)
+        if (direction == Vector2.Zero<int>())
         {
             {
-                Size neighborCandidateDirection = new(0, 1);
+                V2 neighborCandidateDirection = new(0, 1);
                 var neighborCandidatePosition = position + neighborCandidateDirection;
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, moveCount + 1);
             }
             {
-                Size neighborCandidateDirection = new(1, 0);
+                V2 neighborCandidateDirection = new(1, 0);
                 var neighborCandidatePosition = position + neighborCandidateDirection;
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, moveCount + 1);
             }
@@ -73,7 +76,7 @@ internal sealed class UltraGraph :
         }
     }
 
-    private bool IsWithinBounds(Point position)
+    private bool IsWithinBounds(P2 position)
     {
         if (unchecked((uint)position.Y) >= (uint)RowCount)
             return false;

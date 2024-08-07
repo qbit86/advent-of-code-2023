@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using Arborescence;
+using EuclideanSpace;
 using Dijkstra = Arborescence.Search.Adjacency.AdditiveEnumerableDijkstra<AdventOfCode2023.Node, int>;
 
 namespace AdventOfCode2023;
@@ -20,7 +20,7 @@ internal static class Helpers
         Debug.Assert(lines.Count > 0);
 
         var heatLossMap = HeatLossMap.Create(lines);
-        Node source = new(Point.Empty, Size.Empty, 0);
+        Node source = new(Point2.Zero<int>(), Vector2.Zero<int>(), 0);
         Dictionary<Node, int> distanceByNode = new(rowCount * columnCount);
         var edges = Dijkstra.EnumerateEdges(graph, source, heatLossMap, distanceByNode);
         foreach (var _ in edges) { }

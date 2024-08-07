@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using Arborescence;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using P2 = Point2<int>;
 
 internal sealed partial class HeatLossMap : IReadOnlyDictionary<Endpoints<Node>, int>
 {
@@ -32,7 +34,7 @@ internal sealed partial class HeatLossMap : IReadOnlyDictionary<Endpoints<Node>,
         return new(rows);
     }
 
-    private bool ContainsKey(Point position)
+    private bool ContainsKey(P2 position)
     {
         if (unchecked((uint)position.Y) >= (uint)_rows.Length)
             return false;
@@ -42,7 +44,7 @@ internal sealed partial class HeatLossMap : IReadOnlyDictionary<Endpoints<Node>,
 
     private bool TryGetHeatLoss(Node node, out int heatLoss) => TryGetHeatLoss(node.Position, out heatLoss);
 
-    private bool TryGetHeatLoss(Point position, out int heatLoss)
+    private bool TryGetHeatLoss(P2 position, out int heatLoss)
     {
         if (unchecked((uint)position.Y) >= (uint)_rows.Length)
             return None(out heatLoss);
