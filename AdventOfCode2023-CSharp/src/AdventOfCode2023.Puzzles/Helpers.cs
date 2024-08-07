@@ -22,10 +22,10 @@ internal static class Helpers
         var heatLossMap = HeatLossMap.Create(lines);
         Node source = new(Point.Empty, Size.Empty, 0);
         Dictionary<Node, int> distanceByNode = new(rowCount * columnCount);
-        IEnumerable<Endpoints<Node>> edges = Dijkstra.EnumerateEdges(graph, source, heatLossMap, distanceByNode);
-        foreach (Endpoints<Node> _ in edges) { }
+        var edges = Dijkstra.EnumerateEdges(graph, source, heatLossMap, distanceByNode);
+        foreach (var _ in edges) { }
 
-        IEnumerable<KeyValuePair<Node, int>> nodeDistancePairs = distanceByNode.Where(kv => isDestination(kv.Key));
+        var nodeDistancePairs = distanceByNode.Where(kv => isDestination(kv.Key));
         int result = nodeDistancePairs.Min(kv => kv.Value);
         return result;
     }

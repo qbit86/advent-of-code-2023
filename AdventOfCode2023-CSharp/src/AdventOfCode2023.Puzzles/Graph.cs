@@ -33,17 +33,17 @@ internal sealed class Graph :
 
     public IEnumerator<Node> EnumerateOutNeighbors(Node vertex)
     {
-        (Point position, Size direction, int moveCount) = vertex;
+        (var position, var direction, int moveCount) = vertex;
         if (direction == Size.Empty)
         {
             {
                 Size neighborCandidateDirection = new(0, 1);
-                Point neighborCandidatePosition = position + neighborCandidateDirection;
+                var neighborCandidatePosition = position + neighborCandidateDirection;
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, moveCount + 1);
             }
             {
                 Size neighborCandidateDirection = new(1, 0);
-                Point neighborCandidatePosition = position + neighborCandidateDirection;
+                var neighborCandidatePosition = position + neighborCandidateDirection;
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, moveCount + 1);
             }
             yield break;
@@ -51,20 +51,20 @@ internal sealed class Graph :
 
         if (moveCount < 3)
         {
-            Point neighborCandidatePosition = position + direction;
+            var neighborCandidatePosition = position + direction;
             if (IsWithinBounds(neighborCandidatePosition))
                 yield return new(neighborCandidatePosition, direction, moveCount + 1);
         }
 
         {
-            Size neighborCandidateDirection = direction.RotateRight();
-            Point neighborCandidatePosition = position + neighborCandidateDirection;
+            var neighborCandidateDirection = direction.RotateRight();
+            var neighborCandidatePosition = position + neighborCandidateDirection;
             if (IsWithinBounds(neighborCandidatePosition))
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, 1);
         }
         {
-            Size neighborCandidateDirection = direction.RotateLeft();
-            Point neighborCandidatePosition = position + neighborCandidateDirection;
+            var neighborCandidateDirection = direction.RotateLeft();
+            var neighborCandidatePosition = position + neighborCandidateDirection;
             if (IsWithinBounds(neighborCandidatePosition))
                 yield return new(neighborCandidatePosition, neighborCandidateDirection, 1);
         }
