@@ -21,7 +21,7 @@ internal sealed class Output
     {
         if (!string.IsNullOrEmpty(_stringRepresentation))
             return _stringRepresentation;
-        IEnumerable<string> lines = _rows.Select(it => new string(it));
+        var lines = _rows.Select(it => new string(it));
         return _stringRepresentation = string.Join(Environment.NewLine, lines);
     }
 

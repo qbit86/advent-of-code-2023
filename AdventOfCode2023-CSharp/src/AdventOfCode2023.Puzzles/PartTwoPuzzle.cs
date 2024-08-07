@@ -2,7 +2,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,23 +27,23 @@ public static class PartTwoPuzzle
         Debug.Assert(rowCount > 0);
         int columnCount = lines[0].Length;
         var graph = Graph.Create(lines);
-        IEnumerable<Node> topNodes = Enumerable.Range(0, columnCount)
+        var topNodes = Enumerable.Range(0, columnCount)
             .Select(columnIndex => new Node(new(columnIndex, 0), Directions.Down));
-        IEnumerable<Node> leftNodes = Enumerable.Range(0, rowCount)
+        var leftNodes = Enumerable.Range(0, rowCount)
             .Select(rowIndex => new Node(new(0, rowIndex), Directions.Right));
-        IEnumerable<Node> bottomNodes = Enumerable.Range(0, columnCount)
+        var bottomNodes = Enumerable.Range(0, columnCount)
             .Select(columnIndex => new Node(new(columnIndex, rowCount - 1), Directions.Up));
-        IEnumerable<Node> rightNodes = Enumerable.Range(0, rowCount)
+        var rightNodes = Enumerable.Range(0, rowCount)
             .Select(rowIndex => new Node(new(columnCount - 1, rowIndex), Directions.Left));
-        IEnumerable<Node> sources = topNodes.Concat(leftNodes).Concat(bottomNodes).Concat(rightNodes);
-        IEnumerable<int> energizedTileCounts = sources.Select(GetEnergizedTileCount);
+        var sources = topNodes.Concat(leftNodes).Concat(bottomNodes).Concat(rightNodes);
+        var energizedTileCounts = sources.Select(GetEnergizedTileCount);
         return energizedTileCounts.Max();
 
         int GetEnergizedTileCount(Node source)
         {
-            IEnumerable<Node> nodes =
+            var nodes =
                 EnumerableGenericSearch<Node>.EnumerateVertices(graph, source, new ConcurrentStack<Node>());
-            IEnumerable<Point> positions = nodes.Select(node => node.Position).Distinct();
+            var positions = nodes.Select(node => node.Position).Distinct();
             return positions.Count();
         }
     }

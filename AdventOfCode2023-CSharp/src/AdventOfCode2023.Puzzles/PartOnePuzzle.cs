@@ -23,8 +23,8 @@ public static class PartOnePuzzle
     {
         var graph = Graph.Create(lines);
         Node source = new(Point.Empty, Directions.Right);
-        IEnumerable<Node> nodes = EnumerableDfs<Node>.EnumerateVertices(graph, source);
-        IEnumerable<Point> positions = nodes.Select(node => node.Position).Distinct();
+        var nodes = EnumerableDfs<Node>.EnumerateVertices(graph, source);
+        var positions = nodes.Select(node => node.Position).Distinct();
         return positions.Count();
     }
 }

@@ -36,23 +36,23 @@ internal sealed class Graph<TRows> : IOutNeighborsAdjacency<Node, IEnumerator<No
         {
             case '.':
             {
-                Point neighborCandidatePosition = vertex.Position + vertex.Direction;
+                var neighborCandidatePosition = vertex.Position + vertex.Direction;
                 if (IsWithinGrid(neighborCandidatePosition))
                     yield return vertex with { Position = neighborCandidatePosition };
                 yield break;
             }
             case '/':
             {
-                Size neighborCandidateDirection = Directions.GetNewDirectionForForwardMirror(vertex.Direction);
-                Point neighborCandidatePosition = vertex.Position + neighborCandidateDirection;
+                var neighborCandidateDirection = Directions.GetNewDirectionForForwardMirror(vertex.Direction);
+                var neighborCandidatePosition = vertex.Position + neighborCandidateDirection;
                 if (IsWithinGrid(neighborCandidatePosition))
                     yield return new(neighborCandidatePosition, neighborCandidateDirection);
                 yield break;
             }
             case '\\':
             {
-                Size neighborCandidateDirection = Directions.GetNewDirectionForBackwardMirror(vertex.Direction);
-                Point neighborCandidatePosition = vertex.Position + neighborCandidateDirection;
+                var neighborCandidateDirection = Directions.GetNewDirectionForBackwardMirror(vertex.Direction);
+                var neighborCandidatePosition = vertex.Position + neighborCandidateDirection;
                 if (IsWithinGrid(neighborCandidatePosition))
                     yield return new(neighborCandidatePosition, neighborCandidateDirection);
                 yield break;
@@ -60,16 +60,16 @@ internal sealed class Graph<TRows> : IOutNeighborsAdjacency<Node, IEnumerator<No
             case '|':
                 if (Directions.IsHorizontal(vertex.Direction))
                 {
-                    Point topNeighborCandidatePosition = vertex.Position + Directions.Up;
+                    var topNeighborCandidatePosition = vertex.Position + Directions.Up;
                     if (IsWithinGrid(topNeighborCandidatePosition))
                         yield return new(topNeighborCandidatePosition, Directions.Up);
-                    Point bottomNeighborCandidatePosition = vertex.Position + Directions.Down;
+                    var bottomNeighborCandidatePosition = vertex.Position + Directions.Down;
                     if (IsWithinGrid(bottomNeighborCandidatePosition))
                         yield return new(bottomNeighborCandidatePosition, Directions.Down);
                 }
                 else if (Directions.IsVertical(vertex.Direction))
                 {
-                    Point neighborCandidatePosition = vertex.Position + vertex.Direction;
+                    var neighborCandidatePosition = vertex.Position + vertex.Direction;
                     if (IsWithinGrid(neighborCandidatePosition))
                         yield return vertex with { Position = neighborCandidatePosition };
                 }
@@ -78,16 +78,16 @@ internal sealed class Graph<TRows> : IOutNeighborsAdjacency<Node, IEnumerator<No
             case '-':
                 if (Directions.IsHorizontal(vertex.Direction))
                 {
-                    Point neighborCandidatePosition = vertex.Position + vertex.Direction;
+                    var neighborCandidatePosition = vertex.Position + vertex.Direction;
                     if (IsWithinGrid(neighborCandidatePosition))
                         yield return vertex with { Position = neighborCandidatePosition };
                 }
                 else if (Directions.IsVertical(vertex.Direction))
                 {
-                    Point leftNeighborCandidatePosition = vertex.Position + Directions.Left;
+                    var leftNeighborCandidatePosition = vertex.Position + Directions.Left;
                     if (IsWithinGrid(leftNeighborCandidatePosition))
                         yield return new(leftNeighborCandidatePosition, Directions.Left);
-                    Point rightNeighborCandidatePosition = vertex.Position + Directions.Right;
+                    var rightNeighborCandidatePosition = vertex.Position + Directions.Right;
                     if (IsWithinGrid(rightNeighborCandidatePosition))
                         yield return new(rightNeighborCandidatePosition, Directions.Right);
                 }
