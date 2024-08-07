@@ -21,12 +21,12 @@ public static class PartTwoPuzzle
     private static long Solve<TLines>(TLines lines)
         where TLines : IReadOnlyList<string>
     {
-        IEnumerable<Instruction> instructions = lines.Select(Parse);
+        var instructions = lines.Select(Parse);
         List<Segment> segments = new();
         Point current = new();
-        foreach (Instruction instruction in instructions)
+        foreach (var instruction in instructions)
         {
-            Segment segment = instruction.CreateSegment(current);
+            var segment = instruction.CreateSegment(current);
             segments.Add(segment);
             current = segment.EndInclusive;
         }
@@ -37,13 +37,13 @@ public static class PartTwoPuzzle
     private static Instruction Parse(string line)
     {
         Debug.Assert(!string.IsNullOrWhiteSpace(line));
-        ReadOnlySpan<char> lineSpan = line.AsSpan();
+        var lineSpan = line.AsSpan();
         Span<Range> ranges = stackalloc Range[4];
         int count = lineSpan.SplitAny(ranges, " (#)",
             StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         if (count is 0)
             throw new InvalidOperationException($"{nameof(count)}: 0");
-        ReadOnlySpan<char> colorCode = lineSpan[ranges[2]];
+        var colorCode = lineSpan[ranges[2]];
         if (colorCode.Length is not 6)
             throw new InvalidOperationException($"{nameof(colorCode)}: {new string(colorCode)}");
 

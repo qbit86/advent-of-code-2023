@@ -6,13 +6,13 @@ internal readonly record struct Segment(Point Start, Point EndInclusive)
 {
     internal static Segment CreateHorizontal(Point start, long length)
     {
-        Point endInclusive = start with { X = start.X + length };
+        var endInclusive = start with { X = start.X + length };
         return new(start, endInclusive);
     }
 
     internal static Segment CreateVertical(Point start, long length)
     {
-        Point endInclusive = start with { Y = start.Y + length };
+        var endInclusive = start with { Y = start.Y + length };
         return new(start, endInclusive);
     }
 

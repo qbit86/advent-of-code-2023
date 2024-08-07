@@ -16,7 +16,7 @@ internal static class Helpers
 
     private static long ComputeBoundaryPoints(IEnumerable<Segment> segments)
     {
-        IEnumerable<long> lengths = segments.Select(segment => segment.Length());
+        var lengths = segments.Select(segment => segment.Length());
         return lengths.Sum();
     }
 
