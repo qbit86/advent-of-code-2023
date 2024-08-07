@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using Arborescence;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using P2 = Point2<int>;
 
 internal static class Graph
 {
@@ -104,7 +106,7 @@ internal sealed class Graph<TRows> : IOutNeighborsAdjacency<Node, IEnumerator<No
         return new(rows, rows.Count);
     }
 
-    private bool IsWithinGrid(Point position)
+    private bool IsWithinGrid(P2 position)
     {
         if (unchecked((uint)position.Y >= (uint)RowCount))
             return false;
@@ -116,7 +118,7 @@ internal sealed class Graph<TRows> : IOutNeighborsAdjacency<Node, IEnumerator<No
         return true;
     }
 
-    private bool TryGetTile(Point position, out char tile)
+    private bool TryGetTile(P2 position, out char tile)
     {
         if (unchecked((uint)position.Y >= (uint)RowCount))
             return None(out tile);

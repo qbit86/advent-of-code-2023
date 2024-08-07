@@ -2,5 +2,6 @@
   <ItemGroup>
     <PackageReference Include="Arborescence.Abstractions" />
     <PackageReference Include="Arborescence.Traversal" />
+    <PackageReference Include="EuclideanSpace" />
   </ItemGroup>
 </Project>

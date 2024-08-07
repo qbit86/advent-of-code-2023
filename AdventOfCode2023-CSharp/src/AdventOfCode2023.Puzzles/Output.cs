@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using P2 = Point2<int>;
 
 internal sealed class Output
 {
@@ -36,11 +38,11 @@ internal sealed class Output
         return new(rows);
     }
 
-    internal void SetUnchecked(Point position, char value)
+    internal void SetUnchecked(P2 position, char value)
     {
         _rows[position.Y][position.X] = value;
         _stringRepresentation = string.Empty;
     }
 
-    internal char Get(Point position) => _rows[position.Y][position.X];
+    internal char Get(P2 position) => _rows[position.Y][position.X];
 }

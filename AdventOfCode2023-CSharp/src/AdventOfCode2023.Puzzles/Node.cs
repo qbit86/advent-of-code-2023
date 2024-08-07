@@ -1,8 +1,8 @@
-using System.Drawing;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
 
-internal readonly record struct Node(Point Position, Size Direction)
+internal readonly record struct Node(Point2<int> Position, Vector2<int> Direction)
 {
     public override string ToString() =>
         $"{{Row: {Position.Y}, Column: {Position.X}, {nameof(Direction)}: {GetDirectionString()}}}";

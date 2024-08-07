@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arborescence.Traversal.Adjacency;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
 
@@ -22,7 +22,7 @@ public static class PartOnePuzzle
         where TRows : IReadOnlyList<string>
     {
         var graph = Graph.Create(lines);
-        Node source = new(Point.Empty, Directions.Right);
+        Node source = new(Point2.Zero<int>(), Directions.Right);
         var nodes = EnumerableDfs<Node>.EnumerateVertices(graph, source);
         var positions = nodes.Select(node => node.Position).Distinct();
         return positions.Count();
