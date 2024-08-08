@@ -6,6 +6,7 @@
     <PackageVersion Include="Arborescence.Abstractions" Version="0.17.0" />
     <PackageVersion Include="Arborescence.Traversal" Version="0.17.0" />
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.1.1" />
+    <PackageVersion Include="EuclideanSpace" Version="0.1.0-preview" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageVersion Include="MathNet.Numerics" Version="6.0.0-beta1" />

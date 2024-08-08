@@ -1,13 +1,16 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Arborescence;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
 
+using Point = Point2<int>;
+using Vector = Vector2<int>;
+
 public static class Graph
 {
-    internal static Size[] Directions { get; } =
+    internal static Vector[] Directions { get; } =
         [new(1, 0), new(0, 1), new(-1, 0), new(0, -1)];
 
     public static Graph<TMap> Create<TMap>(TMap map) where TMap : IMap => new(map);

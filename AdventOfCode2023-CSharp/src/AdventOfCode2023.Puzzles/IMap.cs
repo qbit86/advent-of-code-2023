@@ -1,6 +1,8 @@
-using System.Drawing;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 public interface IMap
 {

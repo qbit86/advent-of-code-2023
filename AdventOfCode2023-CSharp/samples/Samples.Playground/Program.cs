@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -8,9 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Arborescence.Traversal.Adjacency;
+using EuclideanSpace;
 using static System.FormattableString;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 file static class Program
 {

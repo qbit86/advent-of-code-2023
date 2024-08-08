@@ -2,6 +2,7 @@
   <ItemGroup>
     <PackageReference Include="Arborescence.Abstractions" />
     <PackageReference Include="Arborescence.Traversal" />
+    <PackageReference Include="EuclideanSpace" />
     <PackageReference Include="MathNet.Numerics" />
   </ItemGroup>
 </Project>
