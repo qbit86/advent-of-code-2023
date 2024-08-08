@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arborescence;
 using Arborescence.Traversal.Adjacency;
 
 namespace AdventOfCode2023;
@@ -27,8 +26,8 @@ public static class PartOnePuzzle
         var map = PartOneMap.CreateUnchecked(lines);
         var graph = Graph.Create(map);
         Dictionary<Point, int> distanceByTile = new() { { map.Start, 0 } };
-        IEnumerable<Endpoints<Point>> edges = EnumerableBfs<Point>.EnumerateEdges(graph, map.Start);
-        IEnumerable<KeyValuePair<Point, int>> tileDistancePairs = edges.Select(edge =>
+        var edges = EnumerableBfs<Point>.EnumerateEdges(graph, map.Start);
+        var tileDistancePairs = edges.Select(edge =>
             {
                 int tailDistance = distanceByTile[edge.Tail];
                 int headDistance = tailDistance + 1;
@@ -39,7 +38,7 @@ public static class PartOnePuzzle
 
         int startParity = (map.Start.X + map.Start.Y) & 1;
         int desiredParity = (stepCount & 1) ^ startParity;
-        IEnumerable<Point> filteredNeighborhood = tileDistancePairs
+        var filteredNeighborhood = tileDistancePairs
             .TakeWhile(kv => kv.Value <= stepCount)
             .Select(kv => kv.Key)
             .Where(CheckParity);

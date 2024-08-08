@@ -24,7 +24,7 @@ public static class Helpers
 
     private static string CreateOutputDirectoryPath()
     {
-        DateTime timestamp = DateTime.Now;
+        var timestamp = DateTime.Now;
         return Path.Join(
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             Assembly.GetExecutingAssembly().GetName().Name,

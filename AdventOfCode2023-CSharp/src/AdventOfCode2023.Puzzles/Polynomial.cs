@@ -27,8 +27,8 @@ internal readonly struct Polynomial<TCoefficient, TCoefficients>
 
     internal TCoefficient Compute(TCoefficient argument)
     {
-        TCoefficient current = TCoefficient.One;
-        TCoefficient result = _coefficients[^1];
+        var current = TCoefficient.One;
+        var result = _coefficients[^1];
         for (int i = 1; i < _coefficients.Count; ++i)
         {
             current *= argument;

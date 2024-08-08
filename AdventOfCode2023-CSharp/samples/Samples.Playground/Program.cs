@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Arborescence;
 using Arborescence.Traversal.Adjacency;
 using static System.FormattableString;
 
@@ -34,7 +33,7 @@ file static class Program
         Dictionary<Point, int> distanceByTile = new() { { map.Start, 0 } };
         var edges = EnumerableBfs<Point>.EnumerateEdges(graph, map.Start).ToList();
 
-        foreach (Endpoints<Point> edge in edges)
+        foreach (var edge in edges)
         {
             int tailDistance = distanceByTile[edge.Tail];
             int headDistance = tailDistance + 1;
@@ -99,7 +98,7 @@ file static class Program
 
         XElement pathEdgeContainer = new(ns + "g");
         root.Add(pathEdgeContainer);
-        foreach (Endpoints<Point> edge in edges)
+        foreach (var edge in edges)
         {
             string tailColor = ComputeColor(edge.Tail);
             string headColor = ComputeColor(edge.Head);

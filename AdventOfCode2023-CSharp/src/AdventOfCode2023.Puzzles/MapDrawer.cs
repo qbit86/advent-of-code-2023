@@ -24,13 +24,13 @@ internal sealed class MapDrawer
 
     private void Draw(IReadOnlyList<char[]> rows, IReadOnlyCollection<Point> tiles)
     {
-        foreach (Point tile in tiles)
+        foreach (var tile in tiles)
             rows[tile.Y][tile.X] = 'O';
 
         string fileId = Helpers.GetNextId().ToString(CultureInfo.InvariantCulture);
         string outputFileName = $"{fileId}-{tiles.Count}.txt";
         string outputPath = Path.Join(EnsureDirectory(), outputFileName);
-        using StreamWriter writer = File.CreateText(outputPath);
+        using var writer = File.CreateText(outputPath);
         foreach (char[] row in rows)
             writer.WriteLine(new string(row));
     }

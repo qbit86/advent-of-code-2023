@@ -9,7 +9,7 @@ file static class Program
 {
     private static void Main(string[] args)
     {
-        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddAuthorization();
@@ -18,7 +18,7 @@ file static class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        WebApplication app = builder.Build();
+        var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arborescence;
 using Arborescence.Traversal.Adjacency;
 using MathNet.Numerics.LinearAlgebra;
 
@@ -42,7 +41,7 @@ public static class PartTwoPuzzle
 
         long[] coefficients = new long[points.Length];
         ComputePolynomialCoefficients(points, coefficients);
-        Polynomial<long, long[]> polynomial = PolynomialFactory<long>.Create(coefficients);
+        var polynomial = PolynomialFactory<long>.Create(coefficients);
 
         return polynomial.Compute(megastepCount);
     }
@@ -58,12 +57,12 @@ public static class PartTwoPuzzle
             points[0].Key, points[1].Key, points[2].Key,
             1, 1, 1
         ];
-        Matrix<double> matrix = Matrix<double>.Build.Dense(points.Length, points.Length, storage);
+        var matrix = Matrix<double>.Build.Dense(points.Length, points.Length, storage);
         double[] ys = new double[points.Length];
         for (int i = 0; i < points.Length; ++i)
             ys[i] = points[i].Value;
-        Vector<double> input = Vector<double>.Build.Dense(ys);
-        Vector<double> q = matrix.Solve(input);
+        var input = Vector<double>.Build.Dense(ys);
+        var q = matrix.Solve(input);
         for (int i = 0; i < points.Length; ++i)
             coefficients[i] = long.CreateChecked(q[i]);
     }
@@ -74,8 +73,8 @@ public static class PartTwoPuzzle
         var map = PartTwoMap.Create(lines, stepCount);
         var graph = Graph.Create(map);
         Dictionary<Point, int> distanceByTile = new() { { map.Start, 0 } };
-        IEnumerable<Endpoints<Point>> edges = EnumerableBfs<Point>.EnumerateEdges(graph, map.Start);
-        IEnumerable<KeyValuePair<Point, int>> tileDistancePairs = edges.Select(edge =>
+        var edges = EnumerableBfs<Point>.EnumerateEdges(graph, map.Start);
+        var tileDistancePairs = edges.Select(edge =>
             {
                 int tailDistance = distanceByTile[edge.Tail];
                 int headDistance = tailDistance + 1;
@@ -86,7 +85,7 @@ public static class PartTwoPuzzle
 
         int startParity = (map.Start.X + map.Start.Y) & 1;
         int desiredParity = (stepCount & 1) ^ startParity;
-        IEnumerable<Point> filteredNeighborhood = tileDistancePairs
+        var filteredNeighborhood = tileDistancePairs
             .TakeWhile(kv => kv.Value <= stepCount)
             .Select(kv => kv.Key)
             .Where(CheckParity);
