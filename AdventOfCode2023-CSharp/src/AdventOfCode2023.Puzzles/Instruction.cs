@@ -1,6 +1,9 @@
 using System.Diagnostics;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<long>;
 
 internal sealed class Instruction
 {

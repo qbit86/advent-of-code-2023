@@ -6,8 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<long>;
 
 public static class PartTwoPuzzle
 {

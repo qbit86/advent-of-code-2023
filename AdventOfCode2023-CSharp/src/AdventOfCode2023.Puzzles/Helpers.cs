@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<long>;
 
 internal static class Helpers
 {
@@ -35,4 +38,7 @@ internal static class Helpers
         Debug.Assert(long.IsEvenInteger(sum));
         return Math.Abs(sum) / 2;
     }
+
+    private static long Cross(this Point left, Point right) =>
+        Vector2.Cross(left.AsVector2(), right.AsVector2());
 }
