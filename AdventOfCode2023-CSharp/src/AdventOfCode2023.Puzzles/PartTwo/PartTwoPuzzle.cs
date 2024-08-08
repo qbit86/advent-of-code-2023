@@ -44,9 +44,9 @@ public static class PartTwoPuzzle
                 Point current = new(columnIndex, rowIndex);
                 var neighbors = map.GetOutNeighbors(current).ToList();
                 outNeighborsByPoint.Add(current, neighbors);
-                foreach (Point neighbor in neighbors)
+                foreach (var neighbor in neighbors)
                 {
-                    if (inNeighborsByPoint.TryGetValue(neighbor, out HashSet<Point>? inNeighbors))
+                    if (inNeighborsByPoint.TryGetValue(neighbor, out var inNeighbors))
                         inNeighbors.Add(current);
                     else
                         inNeighborsByPoint.Add(neighbor, [current]);
@@ -60,23 +60,23 @@ public static class PartTwoPuzzle
         if (IsDrawingEnabled)
         {
             var originalGraph = ReadOnlyAdjacencyGraph<Point>.FromFrozenSets(originalOutNeighborsByPoint);
-            DateTime timestamp = DateTime.Now;
+            var timestamp = DateTime.Now;
             var arrayGraphDrawer = GraphDrawer<FrozenSet<Point>.Enumerator>.Create(timestamp);
             arrayGraphDrawer.Draw(originalGraph, originalOutNeighborsByPoint.Keys);
         }
 
         Dictionary<Endpoints<Point>, int> weightByPointEdge = new();
-        foreach (Point current in originalOutNeighborsByPoint.Keys)
+        foreach (var current in originalOutNeighborsByPoint.Keys)
         {
-            HashSet<Point> inNeighbors = inNeighborsByPoint[current];
-            List<Point> outNeighbors = outNeighborsByPoint[current];
+            var inNeighbors = inNeighborsByPoint[current];
+            var outNeighbors = outNeighborsByPoint[current];
             if (outNeighbors.Count is not 2)
                 continue;
             if (!inNeighbors.SetEquals(outNeighbors))
                 continue;
 
-            Point left = outNeighbors[0];
-            Point right = outNeighbors[1];
+            var left = outNeighbors[0];
+            var right = outNeighbors[1];
 
             int newWeight = weightByPointEdge.GetValueOrDefault(Endpoints.Create(left, current), 1) +
                 weightByPointEdge.GetValueOrDefault(Endpoints.Create(right, current), 1);
@@ -87,19 +87,19 @@ public static class PartTwoPuzzle
             weightByPointEdge.Remove(Endpoints.Create(right, current));
             weightByPointEdge.Remove(Endpoints.Create(current, right));
 
-            List<Point> leftOutNeighbors = outNeighborsByPoint[left];
+            var leftOutNeighbors = outNeighborsByPoint[left];
             leftOutNeighbors.Remove(current);
             leftOutNeighbors.Add(right);
 
-            HashSet<Point> leftInNeighbors = inNeighborsByPoint[left];
+            var leftInNeighbors = inNeighborsByPoint[left];
             leftInNeighbors.Remove(current);
             leftInNeighbors.Add(right);
 
-            List<Point> rightOutNeighbors = outNeighborsByPoint[right];
+            var rightOutNeighbors = outNeighborsByPoint[right];
             rightOutNeighbors.Remove(current);
             rightOutNeighbors.Add(left);
 
-            HashSet<Point> rightInNeighbors = inNeighborsByPoint[right];
+            var rightInNeighbors = inNeighborsByPoint[right];
             rightInNeighbors.Remove(current);
             rightInNeighbors.Add(left);
 
@@ -116,7 +116,7 @@ public static class PartTwoPuzzle
 
         List<Point> pointByVertex = new(outNeighborsByPoint.Count);
         Dictionary<Point, int> vertexByPoint = new(outNeighborsByPoint.Count);
-        foreach (Point point in outNeighborsByPoint.Keys)
+        foreach (var point in outNeighborsByPoint.Keys)
         {
             int vertex = pointByVertex.Count;
             pointByVertex.Add(point);
@@ -139,13 +139,13 @@ public static class PartTwoPuzzle
 
         Dictionary<Node, int> distanceByVertex = new();
         WeightMap weightByNodeEdge = new(weightByVertexEdge);
-        IEnumerable<Endpoints<Node>> relaxedEdges = Dijkstra.EnumerateEdges(
+        var relaxedEdges = Dijkstra.EnumerateEdges(
             graph, sourceNode, weightByNodeEdge, distanceByVertex, default(InvertedComparer<int>));
-        foreach (Endpoints<Node> _ in relaxedEdges) { }
+        foreach (var _ in relaxedEdges) { }
 
         Point targetPoint = new(rows[^1].IndexOf('.', StringComparison.Ordinal), rowCount - 1);
         int targetVertex = vertexByPoint[targetPoint];
-        IEnumerable<KeyValuePair<Node, int>> targetVertexDistancePairs = distanceByVertex
+        var targetVertexDistancePairs = distanceByVertex
             .Where(kv => kv.Key.Vertex == targetVertex);
         return targetVertexDistancePairs.Max(kv => kv.Value);
     }

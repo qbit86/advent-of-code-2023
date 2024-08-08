@@ -46,8 +46,7 @@ internal sealed class Graph<TUnderlyingGraph, TUnderlyingGraphNeighbors> :
 
     public IEnumerator<Node> EnumerateOutNeighbors(Node vertex)
     {
-        TUnderlyingGraphNeighbors underlyingOutNeighborsEnumerator =
-            _underlyingGraph.EnumerateOutNeighbors(vertex.Vertex);
+        var underlyingOutNeighborsEnumerator = _underlyingGraph.EnumerateOutNeighbors(vertex.Vertex);
         while (underlyingOutNeighborsEnumerator.MoveNext())
         {
             int underlyingOutNeighbor = underlyingOutNeighborsEnumerator.Current;

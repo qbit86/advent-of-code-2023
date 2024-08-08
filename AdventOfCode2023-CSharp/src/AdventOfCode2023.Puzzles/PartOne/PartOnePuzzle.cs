@@ -46,7 +46,7 @@ public static class PartOnePuzzle
                 if (map.GetTile(rowIndex, columnIndex) is '#')
                     continue;
                 Point point = new(columnIndex, rowIndex);
-                IEnumerable<Point> neighbors = map.GetOutNeighbors(point);
+                var neighbors = map.GetOutNeighbors(point);
                 outNeighborsByPoint.Add(point, neighbors.ToList());
             }
         }
@@ -62,16 +62,16 @@ public static class PartOnePuzzle
 
         Point source = new(rows[0].IndexOf('.', StringComparison.Ordinal), 0);
         Point target = new(rows[^1].IndexOf('.', StringComparison.Ordinal), rowCount - 1);
-        IEnumerable<Point> singleNeighborPoints = originalOutNeighborsByPoint
+        var singleNeighborPoints = originalOutNeighborsByPoint
             .Where(kv => kv.Value.Length is 1).Select(kv => kv.Key)
             .Where(point => point != target)
             .Append(source);
-        foreach (Point singleNeighborPoint in singleNeighborPoints)
+        foreach (var singleNeighborPoint in singleNeighborPoints)
         {
             for (Point current = singleNeighborPoint,
                  neighbor = originalOutNeighborsByPoint[singleNeighborPoint].Single();;)
             {
-                List<Point> neighborNeighbors = outNeighborsByPoint[neighbor];
+                var neighborNeighbors = outNeighborsByPoint[neighbor];
                 neighborNeighbors.Remove(current);
                 if (neighborNeighbors.Count is not 1)
                     break;
@@ -88,35 +88,35 @@ public static class PartOnePuzzle
         }
 
         Dictionary<Point, List<Point>> inNeighborsByPoint = new();
-        IEnumerable<Endpoints<Point>> edges = outNeighborsByPoint
+        var edges = outNeighborsByPoint
             .Select(kv => kv.Value.Select(head => Endpoints.Create(kv.Key, head)))
             .SelectMany(it => it);
-        foreach (Endpoints<Point> edge in edges)
+        foreach (var edge in edges)
         {
-            if (inNeighborsByPoint.TryGetValue(edge.Head, out List<Point>? inNeighbors))
+            if (inNeighborsByPoint.TryGetValue(edge.Head, out var inNeighbors))
                 inNeighbors.Add(edge.Tail);
             else
                 inNeighborsByPoint.Add(edge.Head, [edge.Tail]);
         }
 
-        IEnumerable<Point> intermediatePoints = outNeighborsByPoint.Keys.Intersect(inNeighborsByPoint.Keys);
-        foreach (Point current in intermediatePoints)
+        var intermediatePoints = outNeighborsByPoint.Keys.Intersect(inNeighborsByPoint.Keys);
+        foreach (var current in intermediatePoints)
         {
             if (outNeighborsByPoint[current] is not [var outNeighbor])
                 continue;
             if (inNeighborsByPoint[current] is not [var inNeighbor])
                 continue;
 
-            Size outDirection = new Size(outNeighbor) - new Size(current);
-            Size inDirection = new Size(current) - new Size(inNeighbor);
+            var outDirection = new Size(outNeighbor) - new Size(current);
+            var inDirection = new Size(current) - new Size(inNeighbor);
             if (inDirection.Width * outDirection.Width + inDirection.Height * outDirection.Height is 0)
                 continue;
 
-            List<Point> outNeighborsOfInNeighbor = outNeighborsByPoint[inNeighbor];
+            var outNeighborsOfInNeighbor = outNeighborsByPoint[inNeighbor];
             int outIndex = outNeighborsOfInNeighbor.FindIndex(it => current.Equals(it));
             outNeighborsOfInNeighbor[outIndex] = outNeighbor;
 
-            List<Point> inNeighborsOfOutNeighbor = inNeighborsByPoint[outNeighbor];
+            var inNeighborsOfOutNeighbor = inNeighborsByPoint[outNeighbor];
             int inIndex = inNeighborsOfOutNeighbor.FindIndex(it => current.Equals(it));
             inNeighborsOfOutNeighbor[inIndex] = inNeighbor;
 
@@ -129,9 +129,9 @@ public static class PartOnePuzzle
             ListGraphDrawer.Draw(flyweightGraph, outNeighborsByPoint.Keys, map);
 
         Dictionary<Point, int> distanceByVertex = new();
-        IEnumerable<Endpoints<Point>> relaxedEdges = Dijkstra.EnumerateEdges(
+        var relaxedEdges = Dijkstra.EnumerateEdges(
             flyweightGraph, source, default(WeightMap), distanceByVertex, default(InvertedComparer<int>));
-        foreach (Endpoints<Point> _ in relaxedEdges) { }
+        foreach (var _ in relaxedEdges) { }
 
         return distanceByVertex[target];
     }

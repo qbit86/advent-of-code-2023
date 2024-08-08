@@ -48,13 +48,13 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
         EnsureDirectory();
         string outputFileName = $"{GraphDrawer.GetNextId()}-{vertices.Count}.gv";
         string outputPath = Path.Join(_outputDirectory, outputFileName);
-        using StreamWriter writer = File.CreateText(outputPath);
+        using var writer = File.CreateText(outputPath);
         writer.WriteLine($"digraph \"{outputFileName}\" {{");
         try
         {
             writer.WriteLine($"{Indent}layout=\"neato\"");
             writer.WriteLine($"{Indent}node [shape=point]");
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
                 char tile = map.GetTile(vertex);
                 writer.WriteLine(tile is '.'
@@ -64,12 +64,12 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
 
             writer.WriteLine();
 
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
-                using TNeighborEnumerator outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
+                using var outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
                 while (outNeighborEnumerator.MoveNext())
                 {
-                    Point neighbor = outNeighborEnumerator.Current;
+                    var neighbor = outNeighborEnumerator.Current;
                     writer.WriteLine($"{Indent}\"{vertex}\" -> \"{neighbor}\"");
                 }
             }
@@ -90,15 +90,15 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
         EnsureDirectory();
         string outputFileName = $"{GraphDrawer.GetNextId()}-{vertices.Count}.gv";
         string outputPath = Path.Join(_outputDirectory, outputFileName);
-        using StreamWriter writer = File.CreateText(outputPath);
+        using var writer = File.CreateText(outputPath);
         writer.WriteLine($"digraph \"{outputFileName}\" {{");
         try
         {
             writer.WriteLine($"{Indent}layout=\"neato\"");
             writer.WriteLine($"{Indent}node [shape=point]");
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
-                using TNeighborEnumerator outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
+                using var outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
                 bool hasMoreThanTwoNeighbors = outNeighborEnumerator.MoveNext() &&
                     outNeighborEnumerator.MoveNext() && outNeighborEnumerator.MoveNext();
                 writer.WriteLine(hasMoreThanTwoNeighbors
@@ -108,12 +108,12 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
 
             writer.WriteLine();
 
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
-                using TNeighborEnumerator outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
+                using var outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
                 while (outNeighborEnumerator.MoveNext())
                 {
-                    Point neighbor = outNeighborEnumerator.Current;
+                    var neighbor = outNeighborEnumerator.Current;
                     var edge = Endpoints.Create(vertex, neighbor);
                     int weight = weightByEdge.GetValueOrDefault(edge, 1);
                     writer.WriteLine($"{Indent}\"{vertex}\" -> \"{neighbor}\" [label={weight}]");
@@ -134,15 +134,15 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
         EnsureDirectory();
         string outputFileName = $"{GraphDrawer.GetNextId()}-{vertices.Count}.gv";
         string outputPath = Path.Join(_outputDirectory, outputFileName);
-        using StreamWriter writer = File.CreateText(outputPath);
+        using var writer = File.CreateText(outputPath);
         writer.WriteLine($"digraph \"{outputFileName}\" {{");
         try
         {
             writer.WriteLine($"{Indent}layout=\"neato\"");
             writer.WriteLine($"{Indent}node [shape=point]");
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
-                using TNeighborEnumerator outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
+                using var outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
                 bool hasMoreThanTwoNeighbors = outNeighborEnumerator.MoveNext() &&
                     outNeighborEnumerator.MoveNext() && outNeighborEnumerator.MoveNext();
                 writer.WriteLine(hasMoreThanTwoNeighbors
@@ -152,12 +152,12 @@ internal sealed class GraphDrawer<TNeighborEnumerator>
 
             writer.WriteLine();
 
-            foreach (Point vertex in vertices)
+            foreach (var vertex in vertices)
             {
-                using TNeighborEnumerator outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
+                using var outNeighborEnumerator = graph.EnumerateOutNeighbors(vertex);
                 while (outNeighborEnumerator.MoveNext())
                 {
-                    Point neighbor = outNeighborEnumerator.Current;
+                    var neighbor = outNeighborEnumerator.Current;
                     writer.WriteLine($"{Indent}\"{vertex}\" -> \"{neighbor}\"");
                 }
             }
