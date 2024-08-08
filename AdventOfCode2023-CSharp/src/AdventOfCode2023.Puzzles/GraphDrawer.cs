@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using Arborescence;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 file static class GraphDrawer
 {

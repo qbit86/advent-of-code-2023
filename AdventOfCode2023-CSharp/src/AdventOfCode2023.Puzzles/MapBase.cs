@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 internal abstract class MapBase<TRows>
     where TRows : IReadOnlyList<string>

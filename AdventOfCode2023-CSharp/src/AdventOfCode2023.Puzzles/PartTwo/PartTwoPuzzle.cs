@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arborescence;
 using Arborescence.Models;
-using Dijkstra = Arborescence.Search.Adjacency.AdditiveEnumerableDijkstra<AdventOfCode2023.Node, int>;
+using Arborescence.Search.Adjacency;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
+using Dijkstra = AdditiveEnumerableDijkstra<Node, int>;
 
 public static class PartTwoPuzzle
 {

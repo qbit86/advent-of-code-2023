@@ -2,17 +2,19 @@
 using System.Collections;
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arborescence;
 using Arborescence.Models;
-using Dijkstra = Arborescence.Search.Adjacency.AdditiveEnumerableDijkstra<
-    System.Drawing.Point, System.Collections.Generic.List<System.Drawing.Point>.Enumerator, int>;
+using Arborescence.Search.Adjacency;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
+using Dijkstra = AdditiveEnumerableDijkstra<Point2<int>, List<Point2<int>>.Enumerator, int>;
 
 public static class PartOnePuzzle
 {
@@ -107,9 +109,9 @@ public static class PartOnePuzzle
             if (inNeighborsByPoint[current] is not [var inNeighbor])
                 continue;
 
-            var outDirection = new Size(outNeighbor) - new Size(current);
-            var inDirection = new Size(current) - new Size(inNeighbor);
-            if (inDirection.Width * outDirection.Width + inDirection.Height * outDirection.Height is 0)
+            var outDirection = outNeighbor - current;
+            var inDirection = current - inNeighbor;
+            if (inDirection.X * outDirection.X + inDirection.Y * outDirection.Y is 0)
                 continue;
 
             var outNeighborsOfInNeighbor = outNeighborsByPoint[inNeighbor];

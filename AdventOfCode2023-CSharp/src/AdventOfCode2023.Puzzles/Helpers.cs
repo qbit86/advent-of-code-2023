@@ -1,11 +1,13 @@
 using System.Collections.Generic;
-using System.Drawing;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
 
+using Vector = Vector2<int>;
+
 public static class Helpers
 {
-    private static readonly Size[] s_directions = [new(1, 0), new(0, 1), new(-1, 0), new(0, -1)];
+    private static readonly Vector[] s_directions = [new(1, 0), new(0, 1), new(-1, 0), new(0, -1)];
 
-    internal static IReadOnlyList<Size> Directions => s_directions;
+    internal static IReadOnlyList<Vector> Directions => s_directions;
 }

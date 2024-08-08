@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 internal static class PartOneMap
 {
@@ -26,10 +28,10 @@ internal sealed class PartOneMap<TRows> : MapBase<TRows>
             return GetOutNeighborsIterator(point);
         return tile switch
         {
-            '>' => new[] { point with { X = point.X + 1 } }.Where(IsWithinBoundsAndWalkable),
-            'v' => new[] { point with { Y = point.Y + 1 } }.Where(IsWithinBoundsAndWalkable),
-            '<' => new[] { point with { X = point.X - 1 } }.Where(IsWithinBoundsAndWalkable),
-            '^' => new[] { point with { Y = point.Y - 1 } }.Where(IsWithinBoundsAndWalkable),
+            '>' => new[] { point + Vector2.UnitX<int>() }.Where(IsWithinBoundsAndWalkable),
+            'v' => new[] { point + Vector2.UnitY<int>() }.Where(IsWithinBoundsAndWalkable),
+            '<' => new[] { point + -Vector2.UnitX<int>() }.Where(IsWithinBoundsAndWalkable),
+            '^' => new[] { point + -Vector2.UnitY<int>() }.Where(IsWithinBoundsAndWalkable),
             _ => GetOutNeighborsIterator(point)
         };
     }

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
+
+using Point = Point2<int>;
 
 internal static class PartTwoMap
 {
