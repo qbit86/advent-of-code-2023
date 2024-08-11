@@ -6,7 +6,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Numerics;
+using EuclideanSpace;
+using V3 = EuclideanSpace.Vector3;
 
 namespace AdventOfCode2023;
 
@@ -68,8 +69,8 @@ public static class PartTwoPuzzle
         if (count is not 6)
             throw new ArgumentException(null, nameof(line));
 
-        V3<long> position = new(P(line[ranges[0]]), P(line[ranges[1]]), P(line[ranges[2]]));
-        V3<long> velocity = new(P(line[ranges[3]]), P(line[ranges[4]]), P(line[ranges[5]]));
+        Vector3<long> position = new(P(line[ranges[0]]), P(line[ranges[1]]), P(line[ranges[2]]));
+        Vector3<long> velocity = new(P(line[ranges[3]]), P(line[ranges[4]]), P(line[ranges[5]]));
         return new(position, velocity);
 
         static long P(ReadOnlySpan<char> s)

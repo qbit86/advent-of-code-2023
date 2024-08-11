@@ -1,4 +1,4 @@
-using AdventOfCode.Numerics;
+using EuclideanSpace;
 using Xunit;
 
 namespace AdventOfCode2023;
@@ -11,7 +11,7 @@ public sealed class IntersectionHelpers_Tests
     public static TheoryData<Ray2<double>, Ray2<double>> IntersectionInPastTheoryData { get; } =
         CreateIntersectionInPastTheoryData();
 
-    public static TheoryData<Ray2<double>, Ray2<double>, V2<double>> IntersectionInFutureTheoryData { get; } =
+    public static TheoryData<Ray2<double>, Ray2<double>, Vector2<double>> IntersectionInFutureTheoryData { get; } =
         CreateIntersectionInFutureTheoryData();
 
     [Theory]
@@ -35,7 +35,7 @@ public sealed class IntersectionHelpers_Tests
     [Theory]
     [MemberData(nameof(IntersectionInFutureTheoryData), MemberType = typeof(IntersectionHelpers_Tests))]
     internal void TryGetIntersection_WhenIntersectionInFuture_ReturnsTrue(
-        Ray2<double> left, Ray2<double> right, V2<double> expected)
+        Ray2<double> left, Ray2<double> right, Vector2<double> expected)
     {
         bool result = IntersectionHelpers.TryGetIntersection(left, right, out var actual);
         Assert.True(result);
@@ -68,16 +68,16 @@ public sealed class IntersectionHelpers_Tests
             { Ray2.Create<double>(12, 31, -1, -2), Ray2.Create<double>(20, 19, 1, -5) }
         };
 
-    private static TheoryData<Ray2<double>, Ray2<double>, V2<double>> CreateIntersectionInFutureTheoryData() =>
+    private static TheoryData<Ray2<double>, Ray2<double>, Vector2<double>> CreateIntersectionInFutureTheoryData() =>
         new()
         {
             {
                 Ray2.Create<double>(19, 13, -2, 1), Ray2.Create<double>(18, 19, -1, -1),
-                V2.Create(14.0 + 1.0 / 3.0, 15.0 + 1.0 / 3.0)
+                Vector2.Create(14.0 + 1.0 / 3.0, 15.0 + 1.0 / 3.0)
             },
             {
                 Ray2.Create<double>(19, 13, -2, 1), Ray2.Create<double>(20, 25, -2, -2),
-                V2.Create(11.0 + 2.0 / 3.0, 16.0 + 2.0 / 3.0)
+                Vector2.Create(11.0 + 2.0 / 3.0, 16.0 + 2.0 / 3.0)
             }
         };
 }

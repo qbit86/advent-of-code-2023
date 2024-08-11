@@ -1,13 +1,15 @@
 using System.Numerics;
-using AdventOfCode.Numerics;
+using EuclideanSpace;
 using MathNet.Numerics.LinearAlgebra;
 using static AdventOfCode2023.TryHelpers;
+using V2 = EuclideanSpace.Vector2;
+using V3 = EuclideanSpace.Vector3;
 
 namespace AdventOfCode2023;
 
 public static class IntersectionHelpers
 {
-    public static bool TryGetIntersection(Ray2<double> left, Ray2<double> right, out V2<double> intersection)
+    public static bool TryGetIntersection(Ray2<double> left, Ray2<double> right, out Vector2<double> intersection)
     {
         if (V2.Cross(left.Velocity, right.Velocity) == 0.0)
             return None(out intersection);

@@ -1,24 +1,23 @@
 using System.Numerics;
-using AdventOfCode.Numerics;
+using EuclideanSpace;
+using V3 = EuclideanSpace.Vector3;
 
 namespace AdventOfCode2023;
 
 internal static class V3Helpers
 {
-    internal static T TripleProduct<T>(V3<T> a, V3<T> b, V3<T> c) where T : INumberBase<T> =>
+    internal static T TripleProduct<T>(Vector3<T> a, Vector3<T> b, Vector3<T> c) where T : INumberBase<T> =>
         V3.Dot(a, V3.Cross(b, c));
 }
 
 internal static class V3Helpers<TResult>
     where TResult : INumberBase<TResult>
 {
-    internal static V3<TResult> Create<TSource>(V3<TSource> value) where TSource : INumberBase<TSource> =>
-        V3.Create(TResult.CreateChecked(value.X), TResult.CreateChecked(value.Y), TResult.CreateChecked(value.Z));
-
-    internal static V3<TResult> Cross<TSource>(V3<TSource> left, V3<TSource> right) where TSource : INumberBase<TSource>
+    internal static Vector3<TResult> Cross<TSource>(Vector3<TSource> left, Vector3<TSource> right)
+        where TSource : INumberBase<TSource>
     {
-        var l = Create(left);
-        var r = Create(right);
+        var l = Vector3Conversions<TResult>.AsVector3(left);
+        var r = Vector3Conversions<TResult>.AsVector3(right);
         return V3.Cross(l, r);
     }
 }

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Numerics;
+using EuclideanSpace;
 
 namespace AdventOfCode2023;
 
@@ -24,7 +23,7 @@ public static class PartOnePuzzle
     {
         var hailstonesInt64 = lines.Select(line => Parse(line));
         var hailstones = hailstonesInt64.Select(it => new Ray2<double>(
-                ConvertHelpers<double>.From(it.Position), ConvertHelpers<double>.From(it.Velocity)))
+                Vector2Conversions<double>.AsVector2(it.Position), Vector2Conversions<double>.AsVector2(it.Velocity)))
             .ToList();
         int count = 0;
         for (int i = 0; i < hailstones.Count; ++i)
@@ -56,8 +55,8 @@ public static class PartOnePuzzle
         if (count is not 6)
             throw new ArgumentException(null, nameof(line));
 
-        V2<long> position = new(P(line[ranges[0]]), P(line[ranges[1]]));
-        V2<long> velocity = new(P(line[ranges[3]]), P(line[ranges[4]]));
+        Vector2<long> position = new(P(line[ranges[0]]), P(line[ranges[1]]));
+        Vector2<long> velocity = new(P(line[ranges[3]]), P(line[ranges[4]]));
         return new(position, velocity);
 
         static long P(ReadOnlySpan<char> s)
@@ -65,11 +64,4 @@ public static class PartOnePuzzle
             return long.Parse(s, CultureInfo.InvariantCulture);
         }
     }
-}
-
-file static class ConvertHelpers<TDestination>
-    where TDestination : INumberBase<TDestination>
-{
-    internal static V2<TDestination> From<TSource>(V2<TSource> value) where TSource : INumberBase<TSource> =>
-        V2.Create(TDestination.CreateChecked(value.X), TDestination.CreateChecked(value.Y));
 }
