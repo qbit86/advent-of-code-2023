@@ -63,14 +63,14 @@ public static class V3
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Distance<T>(V3<T> left, V3<T> right) where T : INumberBase<T>, IRootFunctions<T>
     {
-        T distanceSquared = DistanceSquared(left, right);
+        var distanceSquared = DistanceSquared(left, right);
         return T.Sqrt(distanceSquared);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T DistanceSquared<T>(V3<T> left, V3<T> right) where T : INumberBase<T>
     {
-        V3<T> difference = right - left;
+        var difference = right - left;
         return Dot(difference, difference);
     }
 
@@ -95,7 +95,7 @@ public static class V3
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Length<T>(this V3<T> value) where T : INumberBase<T>, IRootFunctions<T>
     {
-        T lengthSquared = value.LengthSquared();
+        var lengthSquared = value.LengthSquared();
         return T.Sqrt(lengthSquared);
     }
 
@@ -121,7 +121,7 @@ public static class V3
         where T : INumberBase<T>
     {
         Debug.Assert(index is >= 0 and < Count);
-        ref T address = ref Unsafe.AsRef(in vector._x);
+        ref var address = ref Unsafe.AsRef(in vector._x);
         return Unsafe.Add(ref address, index);
     }
 }

@@ -22,18 +22,18 @@ public static class PartOnePuzzle
     private static long Solve<TLines>(TLines lines, long testAreaLowerBound, long testAreaUpperBoundInclusive)
         where TLines : IReadOnlyList<string>
     {
-        IEnumerable<Ray2<long>> hailstonesInt64 = lines.Select(line => Parse(line));
+        var hailstonesInt64 = lines.Select(line => Parse(line));
         var hailstones = hailstonesInt64.Select(it => new Ray2<double>(
                 ConvertHelpers<double>.From(it.Position), ConvertHelpers<double>.From(it.Velocity)))
             .ToList();
         int count = 0;
         for (int i = 0; i < hailstones.Count; ++i)
         {
-            Ray2<double> left = hailstones[i];
+            var left = hailstones[i];
             for (int j = i + 1; j < hailstones.Count; ++j)
             {
-                Ray2<double> right = hailstones[j];
-                if (!IntersectionHelpers.TryGetIntersection(left, right, out V2<double> intersection))
+                var right = hailstones[j];
+                if (!IntersectionHelpers.TryGetIntersection(left, right, out var intersection))
                     continue;
 
                 if (intersection.X < testAreaLowerBound || intersection.X > testAreaUpperBoundInclusive)

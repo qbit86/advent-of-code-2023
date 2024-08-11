@@ -51,7 +51,7 @@ public sealed class TolerantComparer<T> : IEqualityComparer<T>, IEqualityCompare
 
     private bool EqualsUnchecked(T x, T y)
     {
-        T difference = T.Abs(y - x);
+        var difference = T.Abs(y - x);
         return difference.CompareTo(_tolerance) <= 0;
     }
 }

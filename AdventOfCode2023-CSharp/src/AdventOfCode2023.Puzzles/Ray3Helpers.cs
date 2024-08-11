@@ -13,8 +13,8 @@ internal static class Ray3Helpers<TResult>
         where TPosition : INumberBase<TPosition>
         where TVelocity : INumberBase<TVelocity>
     {
-        V3<TResult> p = V3Helpers<TResult>.Create(position);
-        V3<TResult> v = V3Helpers<TResult>.Create(velocity);
+        var p = V3Helpers<TResult>.Create(position);
+        var v = V3Helpers<TResult>.Create(velocity);
         return Ray3.Create(p, v);
     }
 }

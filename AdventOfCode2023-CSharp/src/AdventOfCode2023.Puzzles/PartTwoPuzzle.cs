@@ -22,11 +22,11 @@ public static class PartTwoPuzzle
     private static long Solve<TLines>(TLines lines)
         where TLines : IReadOnlyList<string>
     {
-        IEnumerable<Ray3<long>> allHailstoneTrajectories = lines.Select(line => Parse(line));
+        var allHailstoneTrajectories = lines.Select(line => Parse(line));
         // Ignore all but three of the hailstones.
         var hailstoneTrajectories = allHailstoneTrajectories.Take(3).ToList();
         // Select arbitrary hailstone as a reference.
-        Ray3<long> referenceHailstoneTrajectory = hailstoneTrajectories[0];
+        var referenceHailstoneTrajectory = hailstoneTrajectories[0];
         // Recalculate velocities relative to the reference hailstone.
         // No need to perform the Galilean transformation of coordinates by moving the reference hailstone to the origin.
         var hailstoneTrajectoriesTransformed = hailstoneTrajectories.Select(
@@ -40,8 +40,8 @@ public static class PartTwoPuzzle
             hailstoneTrajectoriesTransformed[2].Velocity);
         // The intersection of these planes is the path of the rock in the coordinate system of the reference hailstone.
         // The trajectory (and thus the path) of the rock passes through the reference hailstone, which is stationary after the Galilean transformation.
-        V3<Int128> rockDirection = V3Helpers<Int128>.Cross(normal1, normal2);
-        Ray3<BigInteger> rockPath = Ray3Helpers<BigInteger>.Create(
+        var rockDirection = V3Helpers<Int128>.Cross(normal1, normal2);
+        var rockPath = Ray3Helpers<BigInteger>.Create(
             referenceHailstoneTrajectory.Position, rockDirection);
         // Time when two other hailstones (moving relative to the stationary reference hailstone) collide with the rock.
         long collisionTime1 = (long)IntersectionHelpers<BigInteger>.GetIntersectionTime(
@@ -49,14 +49,14 @@ public static class PartTwoPuzzle
         long collisionTime2 = (long)IntersectionHelpers<BigInteger>.GetIntersectionTime(
             hailstoneTrajectoriesTransformed[2], rockPath);
         // Points where two other hailstones collide with the rock.
-        V3<long> collisionPoint1 =
+        var collisionPoint1 =
             hailstoneTrajectories[1].Position + collisionTime1 * hailstoneTrajectories[1].Velocity;
-        V3<long> collisionPoint2 =
+        var collisionPoint2 =
             hailstoneTrajectories[2].Position + collisionTime2 * hailstoneTrajectories[2].Velocity;
 
         // Restore the rock's initial position given two points on its trajectory.
-        V3<long> rockVelocityInverse = (collisionPoint1 - collisionPoint2) / (collisionTime2 - collisionTime1);
-        V3<long> rockOrigin = collisionPoint2 + collisionTime2 * rockVelocityInverse;
+        var rockVelocityInverse = (collisionPoint1 - collisionPoint2) / (collisionTime2 - collisionTime1);
+        var rockOrigin = collisionPoint2 + collisionTime2 * rockVelocityInverse;
         long result = rockOrigin.X + rockOrigin.Y + rockOrigin.Z;
         return result;
     }

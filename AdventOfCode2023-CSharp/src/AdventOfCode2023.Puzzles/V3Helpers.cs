@@ -17,8 +17,8 @@ internal static class V3Helpers<TResult>
 
     internal static V3<TResult> Cross<TSource>(V3<TSource> left, V3<TSource> right) where TSource : INumberBase<TSource>
     {
-        V3<TResult> l = Create(left);
-        V3<TResult> r = Create(right);
+        var l = Create(left);
+        var r = Create(right);
         return V3.Cross(l, r);
     }
 }

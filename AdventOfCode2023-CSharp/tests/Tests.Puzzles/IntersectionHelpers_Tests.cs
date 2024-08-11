@@ -37,7 +37,7 @@ public sealed class IntersectionHelpers_Tests
     internal void TryGetIntersection_WhenIntersectionInFuture_ReturnsTrue(
         Ray2<double> left, Ray2<double> right, V2<double> expected)
     {
-        bool result = IntersectionHelpers.TryGetIntersection(left, right, out V2<double> actual);
+        bool result = IntersectionHelpers.TryGetIntersection(left, right, out var actual);
         Assert.True(result);
         Assert.Equal(expected, actual, TolerantComparer.Default<double>());
     }
